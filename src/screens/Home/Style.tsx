@@ -18,8 +18,11 @@ export const styles = StyleSheet.create({
     paddingBottom: 20,
     backgroundColor: "#2e2e2e"
   },
-  inputerContainer: {
-    width: 250
+  inputContainer: {
+    flexDirection: "column",
+    gap: 16,
+    alignItems: "center",
+    width: "80%",
   }
 
 });
