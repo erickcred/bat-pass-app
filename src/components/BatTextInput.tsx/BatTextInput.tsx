@@ -6,10 +6,11 @@ import { styles } from './BatTextInputStyles';
 type Props = {
   placeholder?: string;
   value?: string;
+  editable?: boolean;
   onPress?: () => void;
 }
 
-export function BatTextInput({placeholder, value, onPress}: Props) {
+export function BatTextInput({placeholder, value, editable, onPress}: Props) {
   return (
     <View style={styles.inputerContainer}>
       <Pressable
@@ -20,6 +21,8 @@ export function BatTextInput({placeholder, value, onPress}: Props) {
 
       <TextInput
         style={styles.inputer}
+        aria-hidden={true}
+        editable={editable}
         placeholder={placeholder} 
         value={value} />
     </View>

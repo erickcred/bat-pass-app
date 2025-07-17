@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View } from 'react-native';
-import * as Clipboard from "expo-clipboard";
 
 import { styles } from "./Style";
 import { BatLogo } from "../../components/BatLogo/BatLog";
@@ -12,6 +11,14 @@ import clipboardeProcess from "../../services/clipboardeProcess";
 
 export default function Home () {
   const [pass, setPass] = useState("");
+
+  function handleGeneratePass(): void {
+    setPass(generatePasswords())
+  }
+
+  async function handleCopyPass() {
+    await clipboardeProcess(pass)
+  }
   
   function handleClearPass(): void {
     setPass("");
@@ -28,16 +35,17 @@ export default function Home () {
         <BatTextInput
           onPress={() => handleClearPass()}
           placeholder="pass"
-          value={pass} />
+          value={pass} 
+          editable={false} />
 
         <BatButton
-          onPress={() => setPass(generatePasswords())}
+          onPress={() => handleGeneratePass()}
           title="🔥 Generate pass"
           bgColor="" />
           
         <BatButton
-          onPress={async () => await clipboardeProcess(pass)}
-          title="©️ Copy pass"
+          onPress={async () => handleCopyPass()}
+          title="⚡ Copy pass"
           bgColor="" />
       </View>
 
